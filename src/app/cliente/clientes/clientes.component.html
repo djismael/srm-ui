@@ -1,3 +1,49 @@
-<p>
-  Vem nenem!!!
-</p>
+<div class="container">
+  <div class="ui-g">
+    <form >
+      <div class="ui-g-12">
+        <h1>Clientes</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Nome:</label>
+      </div>
+      <div class="ui-g-12 ui-fluid">
+        <input type="text" pInputText placeholder="Nome" name="nome" ngModel required minlength="5">
+        <!--<app-message [control]="nome" error="required" text="Informe o nome da STS"></app-message>-->
+        <!--<app-message [control]="nome" error="minlength" text="Digíte pelo menos 5 caracteres"></app-message>-->
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Limite Credito:</label>
+      </div>
+      <div class="ui-g-12 ui-fluid">
+        <input type="text" pInputText placeholder="Nome" name="nome" ngModel required minlength="5">
+        <!--<app-message [control]="nome" error="required" text="Informe o nome da STS"></app-message>-->
+        <!--<app-message [control]="nome" error="minlength" text="Digíte pelo menos 5 caracteres"></app-message>-->
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Risco:</label>
+      </div>
+      <div class="ui-g-12 ui-fluid">
+        <input type="text" pInputText placeholder="Nome" name="nome" ngModel required minlength="5">
+        <!--<app-message [control]="nome" error="required" text="Informe o nome da STS"></app-message>-->
+        <!--<app-message [control]="nome" error="minlength" text="Digíte pelo menos 5 caracteres"></app-message>-->
+      </div>
+      <div class="ui-g-12 ui-md-6">
+        <button pButton type="submit" label="Salvar"></button>
+      </div>
+    </form>
+  </div>
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable [value]="clienteArray" [responsive]="true" emptyMessage="Nenhum registro cadastrado.">
+        <p-column field="nome" header="Nome"></p-column>
+        <p-column field="limiteCredito" header="Limite"></p-column>
+        <p-column field="risco" header="Risco"></p-column>
+        <p-column field="taxa" header="Taxa"></p-column>
+      </p-dataTable>
+    </div>
+  </div>
+</div>

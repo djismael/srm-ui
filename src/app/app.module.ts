@@ -9,7 +9,7 @@ import {ClienteModule} from './cliente/cliente.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
