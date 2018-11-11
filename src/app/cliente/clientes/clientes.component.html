@@ -1,6 +1,6 @@
 <div class="container">
   <div class="ui-g">
-    <form >
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
       <div class="ui-g-12">
         <h1>Clientes</h1>
       </div>
@@ -9,38 +9,44 @@
         <label>Nome:</label>
       </div>
       <div class="ui-g-12 ui-fluid">
-        <input type="text" pInputText placeholder="Nome" name="nome" ngModel required minlength="5">
-        <!--<app-message [control]="nome" error="required" text="Informe o nome da STS"></app-message>-->
-        <!--<app-message [control]="nome" error="minlength" text="Digíte pelo menos 5 caracteres"></app-message>-->
+        <input type="text" pInputText placeholder="Nome" name="nome" #nome="ngModel" [(ngModel)]="cliente.nome" required minlength="5">
+        <app-message [control]="nome" error="required" text="Informe o nome do Cliente"></app-message>
+        <app-message [control]="nome" error="minlength" text="Digíte pelo menos 5 caracteres"></app-message>
       </div>
 
       <div class="ui-g-12 ui-fluid">
         <label>Limite Credito:</label>
       </div>
       <div class="ui-g-12 ui-fluid">
-        <input type="text" pInputText placeholder="Nome" name="nome" ngModel required minlength="5">
-        <!--<app-message [control]="nome" error="required" text="Informe o nome da STS"></app-message>-->
-        <!--<app-message [control]="nome" error="minlength" text="Digíte pelo menos 5 caracteres"></app-message>-->
+        <input pInputText type="text" name="limite" placeholder="0,00"
+               currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }"
+               [(ngModel)]="cliente.limiteCredito"
+               required #limite="ngModel">
+        <app-message [control]="limite" error="required" text="Informe o um valor de limite"></app-message>
+        <app-message [control]="limite" error="minlength" text="Digíte pelo menos 1 caracteres"></app-message>
       </div>
 
       <div class="ui-g-12 ui-fluid">
         <label>Risco:</label>
       </div>
       <div class="ui-g-12 ui-fluid">
-        <input type="text" pInputText placeholder="Nome" name="nome" ngModel required minlength="5">
-        <!--<app-message [control]="nome" error="required" text="Informe o nome da STS"></app-message>-->
-        <!--<app-message [control]="nome" error="minlength" text="Digíte pelo menos 5 caracteres"></app-message>-->
+        <p-dropdown name="risco" [options]="riscoArray" placeholder="Selecione" [autoWidth]="false"
+                    [(ngModel)]="cliente.risco" required></p-dropdown>
       </div>
       <div class="ui-g-12 ui-md-6">
-        <button pButton type="submit" label="Salvar"></button>
+        <button pButton type="submit" label="Salvar" [disabled]="f.invalid"></button>
       </div>
     </form>
   </div>
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-dataTable [value]="clienteArray" [responsive]="true" emptyMessage="Nenhum registro cadastrado.">
+      <p-dataTable [value]="clienteArray" [responsive]="true" emptyMessage="Nenhum registro cadastrado." #tabela>
         <p-column field="nome" header="Nome"></p-column>
-        <p-column field="limiteCredito" header="Limite"></p-column>
+        <p-column field="limiteCredito" header="Limite">
+          <ng-template let-cliente="rowData" pTemplate="body">
+            <span >{{ cliente.limiteCredito | number:'1.2-2' }}</span>
+          </ng-template>
+        </p-column>
         <p-column field="risco" header="Risco"></p-column>
         <p-column field="taxa" header="Taxa"></p-column>
       </p-dataTable>

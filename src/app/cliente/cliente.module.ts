@@ -5,6 +5,7 @@ import {CoreModule} from '../core/core.module';
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ButtonModule, DataTableModule, DropdownModule, InputTextModule, PanelModule, TooltipModule} from 'primeng/primeng';
+import {CurrencyMaskModule} from 'ng2-currency-mask';
 
 @NgModule({
   imports: [
@@ -17,8 +18,8 @@ import {ButtonModule, DataTableModule, DropdownModule, InputTextModule, PanelMod
     InputTextModule,
     PanelModule,
     ButtonModule,
-    DataTableModule,
-    TooltipModule
+    CurrencyMaskModule,
+    DataTableModule
   ],
   declarations: [ClientesComponent],
   exports: [ClientesComponent]
